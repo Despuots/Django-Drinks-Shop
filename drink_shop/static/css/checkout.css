@@ -1,0 +1,10 @@
+.checkout-container {
+    width: 50%;
+    border: solid 1px #A9A9A9;
+    padding: 1%;
+    border-radius: 10px;
+}
+
+.checkout-btn {
+    margin-top: 10px;
+}

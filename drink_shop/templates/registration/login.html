@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static '/css/login.css' %}">
+
+{% if next %}
+{% if user.is_authenticated %}
+  <p>You must sign in!</p>
+{% endif %}
+{% endif %}
+
+<div class="container container-login">
+  <form method="post" action="{% url 'login' %}">
+    <h2>Log in</h2>
+    {% csrf_token %}
+    <table class="">
+      <tr>
+        <td><b>Vartotojas:</b></td>
+        <td class="td-input">{{ form.username }}</td>
+      </tr>
+      <tr>
+        <td><b>Slaptažodis:</b></td>
+        <td class="td-input">{{ form.password }}</td>
+      </tr>
+    </table>
+    <input class="btn btn-primary mt-3" type="submit" value="Log in"/>
+    <input type="hidden" name="next" value="{{ next }}"/>
+<!--    <p class="mt-1"><a href="{% url 'password_reset' %}">Forgot password?</a></p>-->
+  </form>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/product.css' %}"/>
+      <div class="container-width-50">
+          <div class="upper-content">
+              <img src="{{ product.cover.url }}" alt="">
+              <div class="bla">
+                    <h2>{{ object.title }}</h2>
+                  <div class="d-flex align-items-end justify-content-end">
+                      <a href="{{ object.get_add_to_cart_url }}" class="btn btn-warning">Add to cart</a>
+                  </div>
+              </div>
+
+          </div>
+
+          <div class="content-below">
+              <hr>
+              <h4><b>Description</b></h4>
+              <p class="text-break">{{ object.description }}</p>
+              <hr>
+              <div class="change">
+                  <h4 id="demo">Product details</h4>
+                  <h4 id="demo1">Comments</h4>
+              </div>
+              <table id="hide-table">
+                  <tr>
+                      <td>Region:</td>
+                      <td class="td-content">{{ object.product_region }}</td>
+                  </tr>
+                  <tr>
+                      <td>ABV:</td>
+                      <td class="td-content">{{ object.abv }}%</td>
+                  </tr>
+                  <tr>
+                      <td>Category:</td>
+                      <td class="td-content">{{ object.category.title }}</td>
+                  </tr>
+              </table>
+              <div id="hide-comments" class="comments">
+                  {% if not object.comments.all %}
+                  No comments yet...
+                  {% else %}
+                    {% for comment in object.comments.all %}
+                        {{ comment.name }} -
+                        {{ comment.date_added }}
+                        {{ comment.body }}
+                    {% endfor %}
+                  {% endif %}
+              </div>
+          </div>
+      </div>
+<script>
+
+    document.getElementById("demo").addEventListener("click", hide);
+    document.getElementById("demo1").addEventListener("click", hide2);
+
+
+    function hide(event) {// revealed passed event argument, part of addEventListener
+      let details = document.getElementById("hide-table"); //Passed clicked element to variable
+      let comments = document.getElementById("hide-comments");
+      toggleVis(details, comments);
+    }
+
+    function hide2(event) {// revealed passed event argument, part of addEventListener
+      let details = document.getElementById("hide-table"); //Passed clicked element to variable
+      let comments = document.getElementById("hide-comments");
+      toggleVis2(details, comments);
+    }
+
+    function toggleVis(details, comments) {
+        document.getElementById("demo").style.backgroundColor = "#e74c3c";
+        document.getElementById("demo1").style.backgroundColor = "black";
+      if (details.style.display === "block") {
+        details.style.display = "block";
+        comments.style.display = "none";
+      } else {
+        details.style.display = "block";
+        comments.style.display = "none";
+      }
+    }
+
+    function toggleVis2(details, comments) {
+        document.getElementById("demo1").style.backgroundColor = "#e74c3c";
+        document.getElementById("demo1").style.transition = "all 0.7s";
+        document.getElementById("demo").style.backgroundColor = "black";
+        document.getElementById("demo").style.transition = "all 0.7s";
+      if (comments.style.display === "block") {
+        comments.style.display = "block";
+        details.style.display = "none";
+      } else {
+        comments.style.display = "block";
+        details.style.display = "none";
+      }
+    }
+
+  </script>
+{% endblock %}

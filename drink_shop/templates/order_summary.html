@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static '/css/order_summary.css' %}"/>
+
+    <div class="main-content">
+
+        <div class="wrapper">
+
+            <h1>Your cart</h1>
+            <br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Sn.</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order_product in object.products.all %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ order_product.product.title }}</td>
+                        <td>{{ order_product.product.price }}</td>
+                        <td>
+                            <a class="icons" href="{% url 'drink_shop:remove-single-product-from-cart' order_product.product.slug %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash me-2" viewBox="0 0 16 16">
+                                  <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                                </svg>
+                            </a>
+                            {{ order_product.quantity }}
+                            <a class="icons-plus" href="{% url 'drink_shop:add-to-cart' order_product.product.slug %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus ms-2" viewBox="0 0 16 16">
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                            </a>
+                        </td>
+                        <td>
+                            {{ order_product.get_total_price }}€
+                            <a class="icons" href="{% url 'drink_shop:remove-from-cart' order_product.product.slug %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash float-end" viewBox="0 0 16 16">
+                                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                    <td colspan="4"><b>Total price:</b></td>
+                    <td><b>{{ object.get_final_price }}€</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="border-none">
+                            <a class="btn btn-danger float-end" href="{% url 'drink_shop:checkout' %}">Proceed to checkout</a>
+                            <a class="btn btn-primary float-end me-2" href="{% url 'drink_shop:products' %}">Continue shopping</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

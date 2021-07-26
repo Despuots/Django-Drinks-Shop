@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Purchase history</h1>
+    <br>
+    <hr>
+    {% for object in object_list %}
+        {{ object.ordered_date }}
+        {% for product in object.products.all %}
+        <div>{{ product }} {{product.get_total_price}}€</div>
+        {% endfor %}
+
+        <b>Total price: </b>{{ object.get_final_price }}€
+    <hr>
+    {% endfor %}
+
+{% endblock %}

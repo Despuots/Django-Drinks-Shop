@@ -1,0 +1,50 @@
+
+.product-img {
+    height: 200px;
+    width: 140px;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.card {
+    width: calc(24% + 4px);
+}
+
+.card-body {
+    background-color: black;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+.card-container {
+    border: 1px solid black;
+}
+
+.card-container:hover {
+    border: 3px solid #7f8c8d;
+}
+
+.carousel-item {
+    min-height: 350px;
+}
+
+.category-img {
+    width: 400px;
+    height: 300px;
+}
+
+.card-footer {
+    background-color: black;
+    border: 1px solid black;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card-font-color {
+    color: white;
+}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/checkout.css' %}"/>
+
+    <div class="checkout-container">
+        <h2>Shipping details</h2>
+        <form class="" method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary checkout-btn">Checkout</button>
+        </form>
+
+    </div>
+
+{% endblock %}

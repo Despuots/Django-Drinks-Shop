@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/index.css' %}"/>
+    <h2>Categories</h2>
+    <div class="container-sm d-flex flex-row justify-content-center">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for category in featured_categories %}
+                <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}" data-bs-interval="10000">
+                    <a href="{{ category.get_url }}">
+                        <img src="{{ category.cover.url }}" class="d-block category-img" height="200px" width="200px" alt="...">
+                    </a>
+                    <p class="card-footer">{{ category.title }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bg-secondary" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon bg-secondary" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <h2>Products</h2>
+    <div class="container-fluid d-flex flex-wrap width-100 p-0">
+        {% for product in featured_products %}
+        {% if forloop.counter0 < 8 %}
+        <div class="card m-1 card-container">
+            <div class="d-flex justify-content-center">
+                <img src="{{ product.cover.url }}" class="card-img-top product-img" alt="...">
+            </div>
+            <div class="card-body">
+                <a href="{{ product.get_url }}" class="card-font-color">
+                    <h5 class="card-title">{{ product.title }}</h5>
+                </a>
+                <p class="cart-text">{{ product.category }}</p>
+                <p class="card-text">{{ product.price }}€</p>
+                <a href="{{ product.get_add_to_cart_url }}" class="btn btn-warning">Add to cart</a>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+
+
+
+
+
+{% endblock %}

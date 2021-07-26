@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height:100%;
+}
+
+body {
+    margin: 0;
+}
+
+.cart {
+    text-decoration: none;
+    color: black;
+    background-color: #a5b1c2;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.cart:hover {
+    background-color: red;
+}
+
+.main-container {
+    background-image: url('/../media/images/gierems.jpg');
+    margin: 0;
+    width: 100%;
+    min-height: 90vh;
+    background-size: cover;
+    background-position: center;
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-bottom: 50px;
+}
+
+.container {
+    color: white;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-container a img {
+    width: 30px;
+    height: 30px;
+}
+
+footer {
+    background-color: black;
+}
+
+footer p {
+    text-align: center;
+    padding-top: 10px;
+    color: white
+}
+
+footer a {
+    padding: 4px;
+}
+
+footer a:hover {
+    color: white;
+}
+
+.nav-left-side {
+    display: flex;
+    justify-content: flex-start;
+    width: 40%;
+    padding: 0;
+    text-align: center;
+    margin: 0;
+    list-style: none;
+}
+
+.nav-left-side li {
+    margin-right: 30px;
+}
+
+.nav-right-side {
+    display: flex;
+    justify-content: flex-end;
+    width: 40%;
+    margin: 0;
+    list-style: none;
+}
+
+.nav-right-side li {
+    margin-left: 30px;
+}
+
+a {
+    text-decoration: none;
+}
+
+li a {
+    font-weight: bold;
+    color: black;
+}

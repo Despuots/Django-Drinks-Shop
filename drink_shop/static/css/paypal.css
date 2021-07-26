@@ -1,0 +1,25 @@
+.paypal-container {
+    width: 50%;
+    margin: 10% auto;
+}
+
+.flex {
+    display: flex;
+    background-color: black;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.black {
+    background-color: black;
+    margin: 0;
+    padding-bottom: 40px;
+}
+
+hr {
+    margin: 0;
+}
