@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure--v7^+=m5yz9)p#^h9fz4f3k-4isgvg38&_k5&ab#wt^9e5^9z6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','https://quizzical-hodgkin-9a3ee0.netlify.app/']
+ALLOWED_HOSTS = ['']
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -135,4 +136,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'drink_shop/media')
 MEDIA_URL = '/media/'
 # print(MEDIA_ROOT) - nevenkite padebuginti, bus lengviau nepasiklysti django filesystem džiunglėse
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 LOGIN_REDIRECT_URL = '/'
+
+django_heroku.settings(locals())
