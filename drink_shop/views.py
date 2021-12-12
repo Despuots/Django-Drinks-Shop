@@ -59,8 +59,8 @@ class CheckoutView(View):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             if form.is_valid():
-                delete_addres = ShippingAddress.objects.get(user=self.request.user)
-                delete_addres.delete()
+                delete_address = ShippingAddress.objects.get(user=self.request.user)
+                delete_address.delete()
                 street_address = form.cleaned_data.get('street_address')
                 apartment_address = form.cleaned_data.get('apartment_address')
                 city = form.cleaned_data.get('city')
@@ -121,6 +121,7 @@ def add_to_cart(request, slug):
     product = get_object_or_404(Product, slug=slug)
     order_product, created = OrderProduct.objects.get_or_create(product=product, user=request.user, ordered=False)
     order_qs = Order.objects.filter(user=request.user, ordered=False)
+    print(order_qs)
     if order_qs.exists():
         order = order_qs[0]
         if order.products.filter(product__slug=product.slug).exists():
@@ -181,7 +182,6 @@ def cart_cleaner(request):
     ordered_order.save()
 
     ordered_products = OrderProduct.objects.all().filter(user=request.user, ordered=False)
-    print(ordered_products)
     for order in ordered_products:
         order.ordered = True
         order.save()

@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Category, Product, Order, OrderProduct, Comment, ShippingAddress
+from .models import Category, Product, Order, OrderProduct, ShippingAddress
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -19,5 +19,4 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Order)
 admin.site.register(OrderProduct)
-admin.site.register(Comment)
 admin.site.register(ShippingAddress)

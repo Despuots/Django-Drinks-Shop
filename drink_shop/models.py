@@ -131,10 +131,10 @@ class Comment(models.Model):
 
 class ShippingAddress(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    street_address = models.CharField(max_length=100, blank=True, null=True)
-    apartment_address = models.CharField(max_length=100, blank=True, null=True)
-    city = models.CharField(max_length=100, blank=True, null=True)
-    postal_code = models.CharField(max_length=100, blank=True, null=True)
+    street_address = models.CharField(max_length=100, blank=True, null=True, default='street_address')
+    apartment_address = models.CharField(max_length=100, blank=True, null=True, default='apartment_address')
+    city = models.CharField(max_length=100, blank=True, null=True, default='city')
+    postal_code = models.CharField(max_length=100, blank=True, null=True, default='postal_code')
 
     def __str__(self):
         return self.user.username
