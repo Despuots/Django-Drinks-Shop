@@ -59,8 +59,11 @@ class CheckoutView(View):
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             if form.is_valid():
-                delete_address = ShippingAddress.objects.get(user=self.request.user)
-                delete_address.delete()
+                try:
+                    delete_address = ShippingAddress.objects.get(user=self.request.user)
+                    delete_address.delete()
+                except ObjectDoesNotExist:
+                    pass
                 street_address = form.cleaned_data.get('street_address')
                 apartment_address = form.cleaned_data.get('apartment_address')
                 city = form.cleaned_data.get('city')
